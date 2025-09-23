@@ -4,14 +4,8 @@
 </script>
 
 <template>
-  <div class="flex flex-row min-h-screen">
-    <div class="border-l-2 border-r-2 border-black">
-      <VerticalTextScroll text="something" :speed="10" direction="down" />
-    </div>
+  <div class="flex flex-row min-h-screen border-black">
     <Content />
-    <div class="border-l-2 border-r-2 border-black z-10">
-      <VerticalTextScroll text="something" :speed="10" direction="up" />
-    </div>
   </div>
 </template>
 

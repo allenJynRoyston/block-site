@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ref, onMounted, onUnmounted, type Ref, computed } from 'vue'
+  import { VerticalTextScroll } from '.'
 
   const containerRef: Ref<HTMLElement | null> = ref(null)
   const containerWidth: Ref<number> = ref(0)
@@ -62,9 +63,7 @@
         class="absolute cursor-pointer border-r-2 border-black flex justify-center items-center"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box1Hovered
-            ? 'bg-gradient-to-br from-amber-300 via-orange-500 to-pink-700'
-            : 'bg-gradient-to-br from-amber-50 via-orange-100 to-pink-100',
+          box1Hovered ? 'bg-gradient-to-br from-amber-300 via-orange-500 to-pink-700' : 'bg-white',
         ]"
         :style="{
           height: `${containerHeight / 2 + shiftSize / 2 - (box4Hovered ? growSize : 0) + (box5Hovered ? growSize : 0)}px`,
@@ -75,14 +74,17 @@
         @mouseenter="box1Hovered = true"
         @mouseleave="box1Hovered = false"
       >
+        <div class="border-r-2 border-black z-10 absolute top-0 left-0 h-full overflow-hidden">
+          <VerticalTextScroll text="(╯°□°）╯︵ ┻━┻" :speed="15" direction="up" />
+        </div>
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box1Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box1Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
-          WORK
+          WEB STUFF
         </h1>
       </div>
 
@@ -91,9 +93,7 @@
         class="absolute cursor-pointer border-b-2 border-black flex justify-center items-center"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box2Hovered
-            ? 'bg-gradient-to-br from-sky-300 via-cyan-500 to-blue-800'
-            : 'bg-gradient-to-br from-sky-50 via-cyan-100 to-blue-100',
+          box2Hovered ? 'bg-gradient-to-br from-sky-300 via-cyan-500 to-blue-800' : 'bg-white',
         ]"
         :style="{
           height: `${containerHeight / 2 - shiftSize + (box2Hovered ? growSize : 0) - (box5Hovered ? growSize : 0)}px`,
@@ -105,14 +105,17 @@
         @mouseleave="box2Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box2Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box2Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           ABOUT
         </h1>
+        <div class="border-r-2 border-black z-10 absolute top-0 left-0 h-full overflow-hidden">
+          <VerticalTextScroll text="┬─┬ノ( º _ ºノ)" :speed="20" direction="up" />
+        </div>
       </div>
 
       <!-- Box 3: Bottom right corner, fills gap upwards when box5 hovered -->
@@ -120,12 +123,10 @@
         class="absolute cursor-pointer border-l-2 border-black flex justify-center items-center"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box3Hovered
-            ? 'bg-gradient-to-br from-lime-300 via-emerald-500 to-teal-800'
-            : 'bg-gradient-to-br from-lime-50 via-emerald-100 to-teal-100',
+          box3Hovered ? 'bg-gradient-to-br from-lime-300 via-emerald-500 to-teal-800' : 'bg-white',
         ]"
         :style="{
-          height: `${containerHeight / 2 + shiftSize - (box2Hovered ? growSize : 0) + (box5Hovered ? growSize : 0)}px`,
+          height: `${containerHeight / 2 + shiftSize / 2 - (box2Hovered ? growSize : 0) + (box5Hovered ? growSize : 0)}px`,
           width: `${containerWidth / 2 - shiftSize + (box3Hovered ? growSize : 0) - (box5Hovered ? growSize : 0)}px`,
           top: `${containerHeight / 2 - shiftSize + (box2Hovered ? growSize : 0) - (box5Hovered ? growSize : 0)}px`,
           left: `${containerWidth / 2 + shiftSize - (box3Hovered ? growSize : 0) + (box5Hovered ? growSize : 0)}px`,
@@ -134,14 +135,17 @@
         @mouseleave="box3Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box3Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box3Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
-          SOCIAL
+          GAME DEV
         </h1>
+        <div class="border-l-2 border-black z-10 absolute top-0 right-0 h-full overflow-hidden">
+          <VerticalTextScroll text="┻━┻ ︵ヽ(`Д´)ﾉ︵ ┻━┻" :speed="15" direction="up" />
+        </div>
       </div>
 
       <!-- Box 4: Bottom left corner, fills width gap when box5 hovered -->
@@ -149,9 +153,7 @@
         class="absolute cursor-pointer border-t-2 border-black flex justify-center items-center"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box4Hovered
-            ? 'bg-gradient-to-br from-pink-300 via-rose-500 to-red-800'
-            : 'bg-gradient-to-br from-pink-50 via-rose-100 to-red-100',
+          box4Hovered ? 'bg-gradient-to-br from-pink-300 via-rose-500 to-red-800' : 'bg-white',
         ]"
         :style="{
           height: `${containerHeight / 2 - shiftSize + (box4Hovered ? growSize : 0) - (box5Hovered ? growSize : 0)}px`,
@@ -163,14 +165,17 @@
         @mouseleave="box4Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box4Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box4Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           CONTACT
         </h1>
+        <div class="border-l-2 border-black z-10 absolute top-0 right-0 h-full overflow-hidden">
+          <VerticalTextScroll text="ヽ(°〇°)ﾉ " :speed="20" direction="up" />
+        </div>
       </div>
 
       <!-- Box 5: Center - grows 2x when hovered -->
@@ -180,7 +185,7 @@
           isResizing ? 'transition-none' : 'transition-all duration-300',
           box5Hovered
             ? 'bg-gradient-to-br from-purple-400 via-violet-600 to-indigo-900'
-            : 'bg-gradient-to-br from-purple-50 via-violet-100 to-indigo-100',
+            : 'bg-white',
         ]"
         :style="{
           height: `${Math.max(0, shiftSize + shiftSize / 2 - (box2Hovered ? growSize : 0) - (box4Hovered ? growSize : 0) + (box5Hovered ? box5GrowSize : 0))}px`,
@@ -192,10 +197,10 @@
         @mouseleave="box5Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box5Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box5Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           ME
@@ -210,18 +215,16 @@
         class="flex-1 cursor-pointer flex justify-center items-center border-b-2 border-black"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box1Hovered
-            ? 'bg-gradient-to-r from-amber-300 via-orange-500 to-pink-700'
-            : 'bg-gradient-to-r from-amber-50 via-orange-100 to-pink-100',
+          box1Hovered ? 'bg-gradient-to-r from-amber-300 via-orange-500 to-pink-700' : 'bg-white',
         ]"
         @mouseenter="box1Hovered = true"
         @mouseleave="box1Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box1Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box1Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           WORK
@@ -233,18 +236,16 @@
         class="flex-1 cursor-pointer flex justify-center items-center border-b-2 border-black"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box2Hovered
-            ? 'bg-gradient-to-r from-sky-300 via-cyan-500 to-blue-800'
-            : 'bg-gradient-to-r from-sky-50 via-cyan-100 to-blue-100',
+          box2Hovered ? 'bg-gradient-to-r from-sky-300 via-cyan-500 to-blue-800' : 'bg-white',
         ]"
         @mouseenter="box2Hovered = true"
         @mouseleave="box2Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box2Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box2Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           ABOUT
@@ -258,16 +259,16 @@
           isResizing ? 'transition-none' : 'transition-all duration-300',
           box5Hovered
             ? 'bg-gradient-to-r from-purple-400 via-violet-600 to-indigo-900'
-            : 'bg-gradient-to-r from-purple-50 via-violet-100 to-indigo-100',
+            : 'bg-white',
         ]"
         @mouseenter="box5Hovered = true"
         @mouseleave="box5Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box5Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box5Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           ME
@@ -279,18 +280,16 @@
         class="flex-1 cursor-pointer flex justify-center items-center border-b-2 border-black"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box3Hovered
-            ? 'bg-gradient-to-r from-lime-300 via-emerald-500 to-teal-800'
-            : 'bg-gradient-to-r from-lime-50 via-emerald-100 to-teal-100',
+          box3Hovered ? 'bg-gradient-to-r from-lime-300 via-emerald-500 to-teal-800' : 'bg-white',
         ]"
         @mouseenter="box3Hovered = true"
         @mouseleave="box3Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box3Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box3Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           SOCIAL
@@ -302,18 +301,16 @@
         class="flex-1 cursor-pointer flex justify-center items-center"
         :class="[
           isResizing ? 'transition-none' : 'transition-all duration-300',
-          box4Hovered
-            ? 'bg-gradient-to-r from-pink-300 via-rose-500 to-red-800'
-            : 'bg-gradient-to-r from-pink-50 via-rose-100 to-red-100',
+          box4Hovered ? 'bg-gradient-to-r from-pink-300 via-rose-500 to-red-800' : 'bg-white',
         ]"
         @mouseenter="box4Hovered = true"
         @mouseleave="box4Hovered = false"
       >
         <h1
-          class="text-3xl font-bold"
+          class="text-3xl font-display font-bold"
           :class="[
             isResizing ? 'transition-none' : 'transition-all duration-300',
-            box4Hovered ? 'text-white drop-shadow-lg' : 'text-gray-800',
+            box4Hovered ? 'text-white drop-shadow-lg' : 'text-black',
           ]"
         >
           CONTACT

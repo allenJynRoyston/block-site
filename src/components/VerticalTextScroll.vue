@@ -6,7 +6,7 @@
     textColor?: string
   }
 
-  const props = withDefaults(defineProps<Props>(), {
+  const props: Props = withDefaults(defineProps<Props>(), {
     text: 'DEFAULT TEXT SCROLLING',
     speed: 10,
     direction: 'up',
@@ -27,12 +27,16 @@
             color: textColor,
           }"
         >
-          <span>
-            {{ text }} {{ text }} {{ text }} {{ text }} {{ text }} {{ text }} {{ text }}
-            {{ text }}
-            {{ text }} {{ text }} {{ text }} {{ text }} {{ text }} {{ text }} {{ text }}
-            {{ text }}
-          </span>
+          <div class="space-y-6">
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+            <span>{{ text }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -49,7 +53,7 @@
 
   .marquee-content {
     animation: scroll-up 10s linear infinite;
-    writing-mode: vertical-rl;
+    writing-mode: vertical-lr;
     text-orientation: mixed;
     font-weight: bold;
     font-size: 18px;
@@ -62,10 +66,10 @@
 
   @keyframes scroll-up {
     0% {
-      transform: translateY(-200vh);
+      transform: translateY(-100%);
     }
     100% {
-      transform: translateY(200%);
+      transform: translateY(100%);
     }
   }
 </style>
