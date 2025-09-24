@@ -60,7 +60,8 @@
           <span class="font-bold">Aspiring game developer</span>
           <span class="opacity-75"> (emphasis on "aspiring") </span> with
           <span class="line-through">a graveyard of abandoned</span>
-          <span class="italic"> lovingly archived</span> projects. Here's my current project:
+          <span class="italic"> lovingly archived</span> projects. Here's a preview of my current
+          one:
         </p>
       </div>
 
