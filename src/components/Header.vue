@@ -63,12 +63,27 @@
           ALLEN "JYN" ROYSTON
         </h1>
         <h2
+          class="flex items-center gap-2"
           :class="[
             'text-sm font-sans font-semibold tracking-wide',
             darkMode ? 'text-gray-400' : 'text-gray-600',
           ]"
         >
-          FULLSTACK DEVELOPER ⚡ FRONTEND SPECIALIST
+          <!-- Fullstack Developer Icon -->
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"
+            />
+            <path d="M6 12h4v2H6zm6-4h6v2h-6zm0 4h6v2h-6z" />
+          </svg>
+          FULLSTACK DEVELOPER
+          <!-- Star/Frontend Icon -->
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          FRONTEND SPECIALIST
         </h2>
       </div>
 
@@ -104,41 +119,18 @@
     <!-- Mobile Layout -->
     <div v-else class="p-3">
       <!-- Top: Time & Date centered with Dark Mode Toggle -->
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex-1"></div>
-        <div class="text-center">
-          <div
-            :class="[
-              'text-lg font-mono font-bold drop-shadow-sm',
-              darkMode ? 'text-cyan-400' : 'text-cyan-600',
-            ]"
-          >
-            {{ formattedTime }}
-          </div>
-          <div
-            :class="[
-              'text-xs font-mono font-medium uppercase tracking-wider',
-              darkMode ? 'text-gray-400' : 'text-gray-600',
-            ]"
-          >
-            {{ formattedDate }}
-          </div>
-        </div>
-        <div class="flex-1 flex justify-end">
-          <button
-            @click="toggleDarkMode"
-            :class="[
-              'p-2 rounded-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-opacity-50',
-              darkMode
-                ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400 focus:ring-yellow-400'
-                : 'bg-gray-100 hover:bg-gray-200 text-gray-800 focus:ring-gray-400',
-            ]"
-            :title="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-          >
-            <span class="text-lg">{{ darkMode ? '☀️' : '🌙' }}</span>
-          </button>
-        </div>
-      </div>
+      <button
+        @click="toggleDarkMode"
+        :class="[
+          'absolute top-2 right-6 p-2 rounded-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-opacity-50 z-10',
+          darkMode
+            ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400 focus:ring-yellow-400'
+            : 'bg-gray-100 hover:bg-gray-200 text-gray-800 focus:ring-gray-400',
+        ]"
+        :title="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        <span class="text-sm">{{ darkMode ? '☀️' : '🌙' }}</span>
+      </button>
 
       <!-- Bottom: Static Title -->
       <div class="text-center">
@@ -150,15 +142,30 @@
               : 'from-slate-800 via-gray-700 to-slate-900',
           ]"
         >
-          🚀 ALLEN ROYSTON
+          ALLEN ROYSTON
         </h1>
         <h5
+          class="flex items-center justify-center gap-2"
           :class="[
             'text-sm font-sans font-semibold mt-1 tracking-wide',
             darkMode ? 'text-gray-400' : 'text-gray-600',
           ]"
         >
-          💻 FULLSTACK DEVELOPER ⚡ FRONTEND SPECIALIST
+          <!-- Fullstack Developer Icon -->
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"
+            />
+            <path d="M6 12h4v2H6zm6-4h6v2h-6zm0 4h6v2h-6z" />
+          </svg>
+          FULLSTACK DEVELOPER
+          <!-- Star/Frontend Icon -->
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+            />
+          </svg>
+          FRONTEND SPECIALIST
         </h5>
       </div>
     </div>
