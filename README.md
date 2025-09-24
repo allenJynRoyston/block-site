@@ -1,10 +1,27 @@
-# 🆘 HIRE ME PLEASE - Allen "Jyn" Royston
+# 🚀 Allen "Jyn" Royston - Fullstack Developer
 
-_Experienced fullstack developer seeking employment before the last of my savings disappears into the void_
+\_Experienced developer actively seeking new opportuniti## 📞 Let's Co## 🤝 To Hiring Managers & Tech Leads:
 
-## 😅 The Situation
+If you made it this far, you probably:
 
-Hi there! I'm Allen, and like 47% of the tech industry right now, I'm **actively seeking employment**. This portfolio represents countless hours of unpaid labor disguised as "passion projects" while I slowly burn through my emergency fund and question every life choice that led me here.
+1. **Actually need a skilled developer** _(great timing!)_
+2. Appreciate honest, straightforward communication
+3. Value technical competence over corporate buzzwords
+
+I'm not the "rockstar ninja guru" type. I'm a **solid, experienced developer** who writes clean code, communicates clearly, and builds long-term relationships with teams. In today's market, reliability and skill go hand in hand.
+
+**I'm excited to contribute to your next project.** Let's build something great together.
+
+---
+
+_Built with 💻 Vue 3, ☕ coffee, and 🎯 focus on quality development._ allen.royston.uk@gmail.com _(Quick response time guaranteed)_  
+**LinkedIn**: [linkedin.com/in/allen-royston](https://linkedin.com/in/allen-royston) _(Active and up-to-date)_  
+**GitHub**: [github.com/allenJynRoyston](https://github.com/allenJynRoyston) _(Recent commits, real projects)_  
+**Portfolio**: [This very site you're looking at] _(Live demo of my work)\_today's evolving tech landscape_
+
+## � The Situation
+
+Hi there! I'm Allen, and like many talented developers right now, I'm **actively seeking new opportunities**. This portfolio represents my passion for clean, modern web development and showcases the kind of work I'd love to bring to your team.
 
 ## 🎯 Why Your Company Needs Me (Seriously)
 
@@ -15,12 +32,12 @@ Hi there! I'm Allen, and like 47% of the tech industry right now, I'm **actively
 - **Modern tooling**: Vite, Tailwind, component architecture that doesn't suck
 - **Clean code**: ESLint, TypeScript, proper git workflow because I'm not a monster
 
-### I'm Desperate Enough To Be Reliable
+### I'm Motivated and Available
 
-- **Available immediately**: No 2-week notice drama
-- **Will relocate**: Have passport, will travel (please sponsor visa if needed)
-- **Flexible on salary**: Let's be honest, I need this job more than you need me
-- **Actually responds to emails**: Revolutionary concept in 2025
+- **Available immediately**: Ready to jump in and contribute
+- **Open to relocation**: Have passport, willing to travel for the right opportunity
+- **Realistic expectations**: Understanding of current market conditions
+- **Responsive communication**: Quick turnaround on emails and calls
 
 ### Real Business Value (Not Buzzword Bingo)
 
@@ -85,14 +102,14 @@ pnpm build
 pnpm lint
 ```
 
-## 💰 Let's Talk Numbers
+## 💰 Let's Talk
 
-I'm **realistic about current market conditions**. I know it's rough out there. I'm not asking for 2021 salary ranges - I just need:
+I'm **realistic about current market conditions** and focused on finding the right fit. Looking for:
 
-- **Steady paycheck**: Rent isn't paying itself
-- **Health insurance**: American healthcare system is terrifying
-- **Growth opportunity**: Want to build cool stuff with smart people
-- **Remote friendly**: But happy to relocate for the right opportunity
+- **Competitive compensation**: Fair market rate for the value I bring
+- **Comprehensive benefits**: Health insurance and growth opportunities
+- **Meaningful work**: Want to build products that matter with smart people
+- **Flexible environment**: Remote-friendly culture with collaborative team
 
 ## 🚀 Available For:
 
