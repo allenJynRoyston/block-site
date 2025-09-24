@@ -1,18 +1,11 @@
 <script setup lang="ts">
-  import { ref, onMounted, onUnmounted, computed } from 'vue'
+  import { ref, onMounted, onUnmounted, computed, inject } from 'vue'
 
-  const windowWidth = ref(0)
-  const isMobile = computed(() => windowWidth.value < 768)
   const currentYear = computed(() => new Date().getFullYear())
-  const scrollPosition = ref(0)
 
-  const updateWindowSize = () => {
-    windowWidth.value = window.innerWidth
-  }
-
-  const updateScrollPosition = () => {
-    scrollPosition.value = window.scrollY
-  }
+  const isMobile = inject('isMobile')
+  const darkMode = inject('darkMode')
+  const windowWidth = inject('windowWidth')
 
   const socialLinks = [
     { name: 'GitHub', icon: '⚡', url: '#' },
@@ -20,31 +13,26 @@
     { name: 'Twitter', icon: '🐦', url: '#' },
     { name: 'Email', icon: '📧', url: '#' },
   ]
-
-  onMounted(() => {
-    updateWindowSize()
-    updateScrollPosition()
-    window.addEventListener('resize', updateWindowSize)
-    window.addEventListener('scroll', updateScrollPosition)
-  })
-
-  onUnmounted(() => {
-    window.removeEventListener('resize', updateWindowSize)
-    window.removeEventListener('scroll', updateScrollPosition)
-  })
 </script>
 
 <template>
   <div
-    class="w-full border-t-2 border-black bg-white text-black overflow-hidden"
-    :class="isMobile ? 'relative' : 'fixed bottom-0'"
-    style="z-index: 10"
+    :class="[
+      'w-full border-t-2 overflow-hidden z-50',
+      isMobile ? 'relative' : 'fixed bottom-0',
+      darkMode ? 'border-white bg-slate-900 text-white' : 'border-black bg-white text-black',
+    ]"
   >
     <!-- Desktop Layout -->
     <div v-if="!isMobile" class="flex items-center justify-between p-3">
       <!-- Left: Status Text -->
       <div class="flex-1">
-        <h1 class="text-lg font-display font-semibold tracking-wider text-gray-700">
+        <h1
+          :class="[
+            'text-lg font-display font-semibold tracking-wider',
+            darkMode ? 'text-gray-300' : 'text-gray-700',
+          ]"
+        >
           ✨ Currently available for freelance projects
         </h1>
       </div>
@@ -57,7 +45,10 @@
             v-for="link in socialLinks"
             :key="link.name"
             :href="link.url"
-            class="text-xl hover:text-cyan-600 transition-colors duration-300 cursor-pointer"
+            :class="[
+              'text-xl transition-colors duration-300 cursor-pointer',
+              darkMode ? 'hover:text-cyan-400' : 'hover:text-cyan-600',
+            ]"
             :title="link.name"
           >
             {{ link.icon }}
@@ -65,7 +56,12 @@
         </div>
 
         <!-- Copyright -->
-        <div class="text-sm font-sans text-gray-600 border-l border-gray-400 pl-4">
+        <div
+          :class="[
+            'text-sm font-sans border-l pl-4',
+            darkMode ? 'text-gray-400 border-gray-600' : 'text-gray-600 border-gray-400',
+          ]"
+        >
           © {{ currentYear }}
         </div>
       </div>
@@ -79,7 +75,10 @@
           v-for="link in socialLinks"
           :key="link.name"
           :href="link.url"
-          class="text-xl hover:text-cyan-600 transition-colors duration-300 cursor-pointer"
+          :class="[
+            'text-xl transition-colors duration-300 cursor-pointer',
+            darkMode ? 'hover:text-cyan-400' : 'hover:text-cyan-600',
+          ]"
           :title="link.name"
         >
           {{ link.icon }}
@@ -88,13 +87,20 @@
 
       <!-- Middle: Status -->
       <div class="text-center mb-2">
-        <h1 class="text-base font-display font-semibold tracking-wider text-gray-700">
+        <h1
+          :class="[
+            'text-base font-display font-semibold tracking-wider',
+            darkMode ? 'text-gray-300' : 'text-gray-700',
+          ]"
+        >
           ✨ Available for projects
         </h1>
       </div>
 
       <!-- Bottom: Copyright centered -->
-      <div class="text-center text-xs font-sans text-gray-600">© {{ currentYear }} Portfolio</div>
+      <div :class="['text-center text-xs font-sans', darkMode ? 'text-gray-400' : 'text-gray-600']">
+        © {{ currentYear }} Portfolio
+      </div>
     </div>
   </div>
 </template>
@@ -106,6 +112,6 @@
   }
 
   a:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
   }
 </style>

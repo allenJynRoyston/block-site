@@ -1,4 +1,8 @@
 <script setup lang="ts">
+  import { inject } from 'vue'
+
+  const darkMode = inject('darkMode')
+
   interface Props {
     text?: string
     speed?: number
@@ -16,7 +20,12 @@
 </script>
 
 <template>
-  <div class="flex flex-row min-h-screen bg-white text-black">
+  <div
+    :class="[
+      'flex flex-row min-h-screen',
+      darkMode ? 'bg-slate-900 text-white' : 'bg-white text-black',
+    ]"
+  >
     <div class="min-h-screen overflow-hidden">
       <div class="vertical-marquee">
         <div

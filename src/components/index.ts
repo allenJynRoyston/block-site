@@ -4,3 +4,5 @@ export { default as Footer } from './Footer.vue'
 export { default as Content } from './Content.vue'
 export { default as Body } from './Body.vue'
 export { default as VerticalTextScroll } from './VerticalTextScroll.vue'
+
+export { default as MeContent } from './Content/MeContent.vue'
