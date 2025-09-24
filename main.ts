@@ -1,8 +1,8 @@
-import { serveDir } from "https://deno.land/std@0.208.0/http/file_server.ts";
+import { serveDir } from 'https://deno.land/std@0.208.0/http/file_server.ts'
 
 Deno.serve((req: Request) => {
   return serveDir(req, {
-    fsRoot: "./dist",
+    fsRoot: './dist',
     fallbackToIndex: true,
-  });
-});
+  })
+})

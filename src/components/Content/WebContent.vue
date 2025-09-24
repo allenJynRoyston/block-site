@@ -73,12 +73,11 @@
         </p>
 
         <p>All that being said, I still fucking love to code.</p>
-
-        <a
-          class="cursor-pointer hover:underline transition-all duration-200"
-          @mouseenter="handleLinkHover('https://jynovation-live.deno.dev')"
-          >Can find a link to my other stuff here <span class="font-bold">here.</span></a
-        >
+        <br></br>
+        <a class="cursor-pointer hover:underline transition-all duration-200"
+          @mouseenter="handleLinkHover('https://jynovation-live.deno.dev')">
+          (Here's a link to my other stuff.)
+        </a>
       </div>
     </div>
   </div>

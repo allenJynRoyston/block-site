@@ -14,7 +14,7 @@
     if (!clipboardContent?.value || clipboardContent.value === '') return
 
     // Check if it's an email (copy to clipboard)
-    if (clipboardContent.value.includes('@')) {
+    if (clipboardContent.value.includes('@') && !clipboardContent.value.startsWith('http')) {
       try {
         await navigator.clipboard.writeText(clipboardContent.value)
         showCopiedSplash.value = true
@@ -25,7 +25,7 @@
         console.error('Failed to copy text: ', err)
       }
     }
-    // If it's a URL, navigate to it
+    // If it's a URL (including YouTube links), navigate to it
     else if (clipboardContent.value.startsWith('http')) {
       window.open(clipboardContent.value, '_blank')
     }

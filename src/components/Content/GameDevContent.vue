@@ -2,9 +2,16 @@
   import { inject } from 'vue'
 
   const darkMode = inject('darkMode')
+  const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
+
+  const handleVideoHover = () => {
+    if (updateClipboardContent) {
+      updateClipboardContent('https://www.youtube.com/@callmejynn')
+    }
+  }
 </script>
 <template>
-  <div class="flex flex-col justify-center items-start p-6 w-full h-full relative overflow-hidden">
+  <div class="flex flex-col justify-start items-start p-6 w-full h-full relative overflow-hidden">
     <!-- Background Effects -->
     <div
       class="absolute inset-0 bg-gradient-to-br from-cyan-900/10 via-transparent to-blue-900/10"
@@ -46,29 +53,32 @@
 
       <!-- Summary Text -->
       <div
-        class="space-y-3 text-sm leading-relaxed font-serif"
+        class="space-y-2 text-sm leading-relaxed font-serif mb-4"
         :class="darkMode ? 'text-white' : 'text-gray-800/90'"
       >
         <p>
           <span class="font-bold">Aspiring game developer</span>
           <span class="opacity-75"> (emphasis on "aspiring") </span> with
           <span class="line-through">a graveyard of abandoned</span>
-          <span class="italic"> lovingly archived</span> projects. I've successfully mastered the
-          art of starting 12 different game concepts and finishing exactly
-          <span class="font-medium">zero</span> of them.
+          <span class="italic"> lovingly archived</span> projects. Here's my current project:
         </p>
+      </div>
 
-        <p>
-          My specialty is spending 3 weeks perfecting some mechanic, 2 months designing the
-          "perfect" inventory system, and then moving on to something else and having to redo it all
-          anyway because I forgot how it worked.
-        </p>
-
-        <p>
-          Currently 2 years into a game idea while optimistically telling myself this one will be
-          different. Spoiler alert: <span class="italic">it won't be</span>. But hey, failure is
-          still progress, right?
-        </p>
+      <!-- YouTube Video Embed -->
+      <div
+        class="w-full cursor-pointer transition-transform duration-200 hover:scale-105"
+        @mouseenter="handleVideoHover"
+      >
+        <div class="relative w-full" style="padding-bottom: 50%">
+          <iframe
+            class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+            src="https://www.youtube.com/embed/BQDOsf6WvBU?start=17"
+            title="Game Development Project"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
     </div>
   </div>

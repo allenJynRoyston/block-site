@@ -49,7 +49,7 @@
   <div class="w-full h-full flex flex-col">
     <!-- List Item 1: WORK -->
     <div
-      class="cursor-pointer flex-1 min-h-[375px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[400px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box1Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
@@ -98,7 +98,7 @@
 
     <!-- List Item 2: ABOUT -->
     <div
-      class="cursor-pointer flex-1 min-h-[325px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[350px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box2Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
@@ -147,7 +147,7 @@
 
     <!-- List Item 3: ME -->
     <div
-      class="cursor-pointer flex-1 min-h-[450px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[475px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box3Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
@@ -196,7 +196,7 @@
 
     <!-- List Item 4: SOCIAL -->
     <div
-      class="cursor-pointer flex-1 min-h-[400px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[425px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box4Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
@@ -245,7 +245,7 @@
 
     <!-- List Item 5: CONTACT -->
     <div
-      class="cursor-pointer flex-1 min-h-[200px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[225px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box5Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
