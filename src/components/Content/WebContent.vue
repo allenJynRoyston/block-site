@@ -65,9 +65,8 @@
         </p>
         <p>
           I specialize in modern web technologies and have a deep love for building seamless
-          frontend experiences. Like many in my position, I'm silently panicking about how AI is
-          seamlessly going to
-          <span class="line-through">definately</span> probably going to kill us all, frantically
+          frontend experiences. Like many in my position, I'm silently panicking about how AI is going to
+          <span class="line-through">definately</span> <span class="line-through text-red-500">if we're lucky</span> kill us all, frantically
           scrolling through shitty LinkedIn job postings, and honestly the whole situation in the
           tech industry is all just very upsetting right now.
         </p>

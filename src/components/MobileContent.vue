@@ -47,9 +47,9 @@
 <template>
   <!-- Mobile/Tablet Layout: Simple list -->
   <div class="w-full h-full flex flex-col">
-    <!-- List Item 1: WORK -->
+    <!-- List Item 1: ME -->
     <div
-      class="cursor-pointer flex-1 min-h-[400px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[475px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box1Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
@@ -76,7 +76,7 @@
               box1Hovered ? 'text-white drop-shadow-lg' : darkMode ? 'text-white' : 'text-black',
             ]"
           >
-            WEB DEV
+            ME
           </h1>
         </div>
 
@@ -86,11 +86,11 @@
             transform: !box1Sliding ? 'translateX(0%)' : 'translateX(-100%)',
             transition: 'transform 0.3s ease-in-out',
           }"
-          class="w-full overflow-y-auto overflow-x-hidden"
+          class="w-full h-full overflow-y-auto overflow-x-hidden"
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
-          <div class="flex flex-col">
-            <WebContent />
+          <div class="min-h-full flex flex-col">
+            <MeContent />
           </div>
         </div>
       </div>
@@ -145,9 +145,9 @@
       </div>
     </div>
 
-    <!-- List Item 3: ME -->
+    <!-- List Item 3: WEB DEV -->
     <div
-      class="cursor-pointer flex-1 min-h-[475px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
+      class="cursor-pointer flex-1 min-h-[400px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
         isResizing ? 'transition-none' : '',
         box3Hovered ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white',
@@ -162,7 +162,7 @@
         <!-- Front Content -->
         <div
           :style="{
-            transform: !box5Sliding ? 'translateX(0%)' : 'translateX(-100%)',
+            transform: !box3Sliding ? 'translateX(0%)' : 'translateX(-100%)',
             transition: 'transform 0.3s ease-in-out',
           }"
           class="w-full h-full flex justify-center items-center"
@@ -174,7 +174,7 @@
               box3Hovered ? 'text-white drop-shadow-lg' : darkMode ? 'text-white' : 'text-black',
             ]"
           >
-            ME
+            WEB DEV
           </h1>
         </div>
 
@@ -184,17 +184,17 @@
             transform: !box3Sliding ? 'translateX(0%)' : 'translateX(-100%)',
             transition: 'transform 0.3s ease-in-out',
           }"
-          class="w-full h-full overflow-y-auto overflow-x-hidden"
+          class="w-full overflow-y-auto overflow-x-hidden"
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
-          <div class="min-h-full flex flex-col">
-            <MeContent />
+          <div class="flex flex-col">
+            <WebContent />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- List Item 4: SOCIAL -->
+    <!-- List Item 4: GAME DEV -->
     <div
       class="cursor-pointer flex-1 min-h-[425px] flex justify-center items-center border-b-2 relative overflow-hidden transition-all duration-500"
       :class="[
@@ -223,7 +223,7 @@
               box4Hovered ? 'text-white drop-shadow-lg' : darkMode ? 'text-white' : 'text-black',
             ]"
           >
-            SOCIAL
+            GAME DEV
           </h1>
         </div>
 
