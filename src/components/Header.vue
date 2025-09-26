@@ -103,7 +103,7 @@
               ></div>
             </div>
 
-            <div class="flex justify-center items-center gap-2">
+            <div class="flex justify-center items-center gap-2 mt-1">
 
               <h2
                 class= 'text-sm font-sans font-semibold tracking-wide'
@@ -149,7 +149,7 @@
       </div>
 
       <!-- Center: Name -->
-      <div class="absolute left-1/2 transform -translate-x-1/2">
+      <div class="absolute lg:left-1/2 lg:block right-3">
         <h1
           :class="[
             'text-lg font-mono font-medium uppercase tracking-wider',
@@ -161,7 +161,7 @@
       </div>
 
       <!-- Right: Time & Date - flush right -->
-      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
+      <div class="absolute right-3 hidden lg:block">
         <div
           :class="[
             'text-sm font-mono font-medium uppercase tracking-wider text-right',
