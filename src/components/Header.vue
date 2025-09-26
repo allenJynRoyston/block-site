@@ -72,7 +72,7 @@
       <div class="flex gap-4 items-center">
 
         <!-- Folder Tab - ACTIVE (Hollow) -->
-        <div class="relative left-3.5 cursor-pointer" @click="setLightMode">
+        <div class="relative left-[13.5px] cursor-pointer" @click="setLightMode">
           <div
             class="px-4 py-2 rounded-t-lg border-t-2 border-l-2 border-r-2 shadow-lg absolute -top-5 min-h-[100px] w-[165px]"
             :class="[
