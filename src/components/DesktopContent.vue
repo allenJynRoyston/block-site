@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, inject, type Ref } from 'vue'
+  import { ref, inject, computed, type Ref } from 'vue'
   import {
     DesktopFlipCard,
     VerticalTextScroll,
@@ -15,9 +15,31 @@
     containerWidth: number
     containerHeight: number
     isResizing: boolean
+    activeTab: string
   }>()
 
   const darkMode = inject('darkMode')
+
+  // Computed titles based on active tab
+  const cardTitles = computed(() => {
+    if (props.activeTab === 'portfolio') {
+      return {
+        box1: 'FOUNTECH.AI',
+        box2: 'METAFY.GG',
+        box3: 'VIRGIN ACTIVE',
+        box4: 'BEDE GAMING',
+        box5: 'ME?'
+      }
+    } else {
+      return {
+        box1: 'WEB DEV',
+        box2: 'ABOUT',
+        box3: 'GAME DEV',
+        box4: 'CONTACT',
+        box5: 'ME!'
+      }
+    }
+  })
 
   const shiftSize: number = 150
   const growSize: number = 100
@@ -43,7 +65,7 @@
     <!-- Box 1: Left edge, grows in height when box5 hovered -->
     <div
       :class="[
-        'absolute cursor-pointer border-r-2 flex justify-center items-center overflow-hidden bg-gradient-to-br from-purple-400 via-violet-600 to-indigo-900',
+        'absolute cursor-pointer border-r-2 flex justify-center items-center overflow-hidden bg-slate-800',
         isResizing ? 'transition-none' : 'transition-all duration-300',
         box4Hovered
           ? 'z-20'
@@ -76,10 +98,10 @@
         :is-flipped="box1Flipped"
         :is-hovered="box1Hovered"
         :is-resizing="props.isResizing"
-        front-title="WEB DEV"
+        :front-title="cardTitles.box1"
       >
         <template #back>
-          <WebContent />
+          <WebContent :active-tab="props.activeTab" />
         </template>
       </DesktopFlipCard>
     </div>
@@ -87,7 +109,7 @@
     <!-- Box 2: Top right corner, grows to the left when box5 hovered -->
     <div
       :class="[
-        'absolute cursor-pointer border-b-2 flex justify-center items-center overflow-hidden bg-gradient-to-br from-purple-400 via-violet-600 to-indigo-900',
+        'absolute cursor-pointer border-b-2 flex justify-center items-center overflow-hidden bg-slate-800',
         isResizing ? 'transition-none' : 'transition-all duration-300',
         box4Hovered
           ? 'z-20'
@@ -118,10 +140,10 @@
         :is-flipped="box2Flipped"
         :is-hovered="box2Hovered"
         :is-resizing="props.isResizing"
-        front-title="ABOUT"
+        :front-title="cardTitles.box2"
       >
         <template #back>
-          <AboutContent />
+          <AboutContent :active-tab="props.activeTab" />
         </template>
       </DesktopFlipCard>
     </div>
@@ -129,7 +151,7 @@
     <!-- Box 3: Bottom right corner, fills gap upwards when box5 hovered -->
     <div
       :class="[
-        'absolute cursor-pointer border-l-2 flex justify-center items-center overflow-hidden bg-gradient-to-br from-purple-400 via-violet-600 to-indigo-900',
+        'absolute cursor-pointer border-l-2 flex justify-center items-center overflow-hidden bg-slate-800',
         isResizing ? 'transition-none' : 'transition-all duration-300',
         box3Hovered
           ? 'z-20'
@@ -153,10 +175,10 @@
         :is-flipped="box3Flipped"
         :is-hovered="box3Hovered"
         :is-resizing="props.isResizing"
-        front-title="GAME DEV"
+        :front-title="cardTitles.box3"
       >
         <template #back>
-          <GameDevContent />
+          <GameDevContent :active-tab="props.activeTab" />
         </template>
       </DesktopFlipCard>
 
@@ -171,7 +193,7 @@
     <!-- Box 4: Bottom left corner, fills width gap when box5 hovered -->
     <div
       :class="[
-        'absolute cursor-pointer border-t-2 flex justify-center items-center overflow-hidden bg-gradient-to-br from-purple-400 via-violet-600 to-indigo-900',
+        'absolute cursor-pointer border-t-2 flex justify-center items-center overflow-hidden bg-slate-800',
         isResizing ? 'transition-none' : 'transition-all duration-300',
         box4Hovered
           ? 'z-20'
@@ -195,10 +217,10 @@
         :is-flipped="box4Flipped"
         :is-hovered="box4Hovered"
         :is-resizing="props.isResizing"
-        front-title="CONTACT"
+        :front-title="cardTitles.box4"
       >
         <template #back>
-          <ContactContent />
+          <ContactContent :active-tab="props.activeTab" />
         </template>
       </DesktopFlipCard>
 
@@ -213,7 +235,7 @@
     <!-- Box 5: Center - grows 2x when hovered -->
     <div
       :class="[
-        'absolute cursor-pointer flex justify-center items-center bg-gradient-to-br from-purple-400 via-violet-600 to-indigo-900',
+        'absolute cursor-pointer flex justify-center items-center bg-slate-800',
         isResizing ? 'transition-none' : 'transition-all duration-300',
         box5Hovered
           ? 'z-20'
@@ -237,10 +259,10 @@
         :is-flipped="box5Flipped"
         :is-hovered="box5Hovered"
         :is-resizing="props.isResizing"
-        front-title="ME!"
+        :front-title="cardTitles.box5"
       >
         <template #back>
-          <MeContent />
+          <MeContent :active-tab="props.activeTab" />
         </template>
       </DesktopFlipCard>
     </div>

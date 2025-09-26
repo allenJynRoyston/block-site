@@ -1,12 +1,31 @@
 <script setup lang="ts">
-  import { inject } from 'vue'
+  import { inject, computed } from 'vue'
+  import LinkButton from '../LinkButton.vue'
 
   const darkMode = inject('darkMode')
   const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
 
+  interface Props {
+    activeTab?: string
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    activeTab: 'about-me'
+  })
+
+  const title = computed(() => {
+    return props.activeTab === 'portfolio' ? 'SOMETHING DANGEROUS LIVES HERE' : 'GAME DEVELOPER'
+  })
+
   const handleVideoHover = () => {
     if (updateClipboardContent) {
       updateClipboardContent('https://www.youtube.com/@callmejynn')
+    }
+  }
+
+  const handleHover = (content: string) => {
+    if (updateClipboardContent) {
+      updateClipboardContent(content)
     }
   }
 </script>
@@ -39,7 +58,7 @@
             :class="
               darkMode ? 'text-xs text-cyan-400/80 font-mono' : 'text-xs text-black/80 font-mono'
             "
-            >GAME DEVELOPER</span
+            >{{ title }}</span
           >
           <div
             :class="
@@ -52,33 +71,42 @@
       </div>
 
       <!-- Summary Text -->
-      <div
-        class="space-y-2 text-sm leading-relaxed font-serif mb-4"
-        :class="darkMode ? 'text-white' : 'text-gray-800/90'"
-      >
-        <p>
-          <span class="font-bold">Aspiring game developer</span>
-          <span class="opacity-75"> (emphasis on "aspiring") </span> with
-          <span class="line-through">a graveyard of abandoned</span>
-          <span class="italic"> lovingly archived</span> projects. Here's a preview of my current
-          one:
-        </p>
-      </div>
+      <div v-if="props.activeTab === 'portfolio'">
+        <div class="relative" v-if="props.activeTab === 'portfolio'">
+          <img @mouseenter="handleHover('https://bedegaming.com')" src="/screenshots/bedegaming.png" alt="Startup GIF" class="w-full h-full object-cover fixed top-0 left-0" />
+          <LinkButton href="https://bedegaming.com" />
 
-      <!-- YouTube Video Embed -->
-      <div
-        class="w-full cursor-pointer transition-transform duration-200 hover:scale-105"
-        @mouseenter="handleVideoHover"
-      >
-        <div class="relative w-full" style="padding-bottom: 50%">
-          <iframe
-            class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
-            src="https://www.youtube.com/embed/BQDOsf6WvBU?start=17"
-            title="Game Development Project"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+        </div>
+      </div>
+      <div v-else>
+        <div
+          class="space-y-2 text-sm leading-relaxed font-serif mb-4"
+          :class="darkMode ? 'text-white' : 'text-gray-800/90'"
+        >
+          <p>
+            <span class="font-bold">Aspiring game developer</span>
+            <span class="opacity-75"> (emphasis on "aspiring") </span> with
+            <span class="line-through">a graveyard of abandoned</span>
+            <span class="italic"> lovingly archived</span> projects. Here's a preview of my current
+            one:
+          </p>
+        </div>
+
+        <!-- YouTube Video Embed -->
+        <div
+          class="w-full cursor-pointer transition-transform duration-200 hover:scale-105"
+          @mouseenter="handleVideoHover"
+        >
+          <div class="relative w-full" style="padding-bottom: 50%">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+              src="https://www.youtube.com/embed/BQDOsf6WvBU?start=17"
+              title="Game Development Project"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

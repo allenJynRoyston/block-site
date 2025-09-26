@@ -1,8 +1,21 @@
 <script setup lang="ts">
-  import { inject } from 'vue'
+  import { inject, computed } from 'vue'
+  import LinkButton from '../LinkButton.vue'
 
   const darkMode = inject('darkMode')
   const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
+
+  interface Props {
+    activeTab?: string
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    activeTab: 'about-me'
+  })
+
+  const title = computed(() => {
+    return props.activeTab === 'portfolio' ? 'ITEM 4' : 'CONTACT'
+  })
 
   // Contact information
   const contactInfo = {
@@ -38,7 +51,7 @@
             :class="
               darkMode ? 'text-xs text-cyan-400/80 font-mono' : 'text-xs text-black/80 font-mono'
             "
-            >CONTACT</span
+            >{{ title }}</span
           >
           <div
             :class="
@@ -50,8 +63,19 @@
         </div>
       </div>
 
-      <!-- Contact Icons -->
-      <div class="grid grid-cols-3 gap-6 mt-2">
+      <!-- Portfolio Mode Content -->
+      <div v-if="props.activeTab === 'portfolio'">
+        <div class="relative" v-if="props.activeTab === 'portfolio'">
+          <img  @mouseenter="handleHover('https://www.virginactive.co.uk')" src="/screenshots/virginactive.png" alt="Startup GIF" class="w-full h-full object-cover fixed top-0 left-0" />
+          <LinkButton href="https://www.virginactive.co.uk" />
+
+        </div>
+      </div>
+
+      <!-- Default Contact Content -->
+      <div v-else>
+        <!-- Contact Icons -->
+        <div class="grid grid-cols-3 gap-6 mt-2">
         <!-- Email -->
         <div
           class="flex flex-col items-center group cursor-pointer"
@@ -171,6 +195,7 @@
             "
             >GITHUB</span
           >
+        </div>
         </div>
       </div>
     </div>

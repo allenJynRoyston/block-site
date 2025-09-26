@@ -42,12 +42,21 @@
     clipboardContent.value = content
   }
 
+  // Active tab state
+  const activeTab = ref<'about-me' | 'portfolio'>('about-me')
+
+  const setActiveTab = (tab: 'about-me' | 'portfolio') => {
+    activeTab.value = tab
+  }
+
   provide('darkMode', darkMode)
   provide('toggleDarkMode', toggleDarkMode)
   provide('isMobile', isMobile)
   provide('windowWidth', windowWidth)
   provide('clipboardContent', clipboardContent)
   provide('updateClipboardContent', updateClipboardContent)
+  provide('activeTab', activeTab)
+  provide('setActiveTab', setActiveTab)
 
   // Watch for darkMode changes and save to localStorage
   watch(darkMode, (newValue) => {
@@ -56,6 +65,7 @@
 
   onMounted(() => {
     updateWindowSize()
+    setActiveTab(darkMode.value ? 'portfolio' : 'about-me')
     window.addEventListener('resize', updateWindowSize)
   })
 

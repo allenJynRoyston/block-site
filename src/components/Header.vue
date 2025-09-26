@@ -26,10 +26,28 @@
 
   let timeInterval: number
 
+
   const isMobile = inject('isMobile')
   const darkMode = inject('darkMode')
   const toggleDarkMode = inject('toggleDarkMode') as () => void
   const windowWidth = inject('windowWidth')
+  const activeTab = inject('activeTab')
+  const setActiveTab = inject('setActiveTab') as (tab: 'about-me' | 'portfolio') => void
+
+  // Functions to set dark mode and active tab
+  const setLightMode = () => {
+    setActiveTab('about-me')
+    if (darkMode.value === true) {
+      toggleDarkMode()
+    }
+  }
+
+  const setDarkMode = () => {
+    setActiveTab('portfolio')
+    if (darkMode.value === false) {
+      toggleDarkMode()
+    }
+  }
 
   onMounted(() => {
     updateTime()
@@ -44,54 +62,109 @@
 <template>
   <div
     :class="[
-      'border-0 border-b-2 bg-gradient-to-r overflow-hidden',
+      'border-0 border-b-2 bg-gradient-to-r overflow-hidden py-5',
       darkMode ? 'border-white bg-slate-900 text-white' : 'border-black bg-white text-black',
     ]"
   >
     <!-- Desktop Layout -->
-    <div v-if="!isMobile" class="flex items-center justify-between pl-3 py-2">
-      <!-- Left: Static Title -->
-      <div class="flex-1 flex gap-x-10 items-center">
+    <div v-if="!isMobile" class="relative flex items-center pl-3 py-2">
+      <!-- Left: Folder Tabs flush to left -->
+      <div class="flex gap-4 items-center">
+
+        <!-- Folder Tab - ACTIVE (Hollow) -->
+        <div class="relative left-3.5 cursor-pointer" @click="setLightMode">
+          <div
+            class="px-4 py-2 rounded-t-lg border-t-2 border-l-2 border-r-2 shadow-lg absolute -top-5 min-h-[100px] w-[165px]"
+            :class="[
+              darkMode
+                    ? 'bg-transparent text-white border-white'
+                    : 'bg-white text-black border-black'
+            ]"
+          >
+            <!-- Tab notch effect -->
+            <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-transparent">
+              <div
+                :class="[
+                  'absolute bottom-0 right-0 w-4 h-4 rounded-bl-full',
+                  darkMode
+                    ? 'border-r-2 border-b-2 border-white'
+                    : 'border-r-2 border-b-2 border-black'
+                ]"
+              ></div>
+            </div>
+            <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-transparent">
+              <div
+                :class="[
+                  'absolute bottom-0 left-0 w-4 h-4 rounded-br-full',
+                  darkMode
+                    ? 'border-l-2 border-b-2 border-white'
+                    : 'border-l-2 border-b-2 border-black'
+                ]"
+              ></div>
+            </div>
+
+            <div class="flex justify-center items-center gap-2">
+
+              <h2
+                class= 'text-sm font-sans font-semibold tracking-wide'
+                :class="[darkMode ? 'text-white' : 'text-black']"
+              >
+                ABOUT ME
+              </h2>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Folder Tab -->
+        <div class="relative left-[170px] cursor-pointer" @click="setDarkMode">
+          <div
+            class="px-4 py-2 rounded-t-lg border-t-2 border-l-2 border-r-2 shadow-lg absolute -top-5 min-h-[100px] w-[165px]"
+            :class="[
+              darkMode
+                    ? 'bg-white text-black border-black'
+                    : 'bg-black text-white border-white'
+            ]"
+          >
+                      <!-- Tab notch effect -->
+            <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-transparent">
+              <div class="absolute bottom-0 right-0 w-4 h-4 bg-black rounded-bl-full"></div>
+            </div>
+            <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-transparent">
+              <div class="absolute bottom-0 left-0 w-4 h-4 bg-black rounded-br-full"></div>
+            </div>
+
+            <div class="flex justify-center items-center gap-2">
+
+              <h2
+                class= 'text-sm font-sans font-semibold tracking-wide'
+                :class="[darkMode ? 'text-black' : 'text-white']"
+              >
+                PORTFOLIO
+              </h2>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Name -->
+      <div class="absolute left-1/2 transform -translate-x-1/2">
         <h1
           :class="[
-            'text-lg font-display font-extrabold tracking-wide bg-gradient-to-r bg-clip-text text-transparent drop-shadow-sm',
-            darkMode
-              ? 'from-white via-gray-300 to-white'
-              : 'from-slate-800 via-gray-700 to-slate-900',
+            'text-lg font-mono font-medium uppercase tracking-wider',
+            darkMode ? 'text-gray-400' : 'text-gray-600',
           ]"
         >
           ALLEN "JYN" ROYSTON
         </h1>
-        <h2
-          class="flex items-center gap-2"
-          :class="[
-            'text-sm font-sans font-semibold tracking-wide',
-            darkMode ? 'text-gray-400' : 'text-gray-600',
-          ]"
-        >
-          <!-- Fullstack Developer Icon -->
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"
-            />
-            <path d="M6 12h4v2H6zm6-4h6v2h-6zm0 4h6v2h-6z" />
-          </svg>
-          FULLSTACK DEVELOPER
-          <!-- Star/Frontend Icon -->
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-            />
-          </svg>
-          FRONTEND SPECIALIST
-        </h2>
       </div>
 
-      <!-- Right: Time & Date -->
-      <div class="text-right">
+      <!-- Right: Time & Date - flush right -->
+      <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
         <div
           :class="[
-            'text-sm font-mono font-medium uppercase tracking-wider',
+            'text-sm font-mono font-medium uppercase tracking-wider text-right',
             darkMode ? 'text-gray-400' : 'text-gray-600',
           ]"
         >
@@ -99,38 +172,11 @@
         </div>
       </div>
 
-      <!-- Center: Dark Mode Toggle -->
-      <div class="flex items-center mr-1 px-2">
-        <button
-          @click="toggleDarkMode"
-          :class="[
-            'p-2 rounded-lg transition-all duration-300 hover:scale-110 focus:outline-none ',
-            darkMode
-              ? 'bg-gray-900 hover:bg-gray-600 text-yellow-400'
-              : 'bg-white hover:bg-gray-200 text-gray-800',
-          ]"
-          :title="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-        >
-          <span class="text-xl">{{ darkMode ? '☀️' : '🌙' }}</span>
-        </button>
-      </div>
+
     </div>
 
     <!-- Mobile Layout -->
-    <div v-else class="p-3">
-      <!-- Top: Time & Date centered with Dark Mode Toggle -->
-      <button
-        @click="toggleDarkMode"
-        :class="[
-          'absolute top-2 right-6 p-2 rounded-lg transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-opacity-50 z-10',
-          darkMode
-            ? 'bg-gray-700 hover:bg-gray-600 text-yellow-400 focus:ring-yellow-400'
-            : 'bg-gray-100 hover:bg-gray-200 text-gray-800 focus:ring-gray-400',
-        ]"
-        :title="darkMode ? 'Switch to light mode' : 'Switch to dark mode'"
-      >
-        <span class="text-sm">{{ darkMode ? '☀️' : '🌙' }}</span>
-      </button>
+    <div v-else class="p-3 py-10">
 
       <!-- Bottom: Static Title -->
       <div class="text-center">
@@ -144,29 +190,6 @@
         >
           ALLEN ROYSTON
         </h1>
-        <h5
-          class="flex items-center justify-center gap-2"
-          :class="[
-            'text-sm font-sans font-semibold mt-1 tracking-wide',
-            darkMode ? 'text-gray-400' : 'text-gray-600',
-          ]"
-        >
-          <!-- Fullstack Developer Icon -->
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M20 3H4c-1.103 0-2 .897-2 2v11c0 1.103.897 2 2 2h7v2H8v2h8v-2h-3v-2h7c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2zM4 14V5h16l.002 9H4z"
-            />
-            <path d="M6 12h4v2H6zm6-4h6v2h-6zm0 4h6v2h-6z" />
-          </svg>
-          FULLSTACK DEVELOPER
-          <!-- Star/Frontend Icon -->
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-            />
-          </svg>
-          FRONTEND SPECIALIST
-        </h5>
       </div>
     </div>
   </div>

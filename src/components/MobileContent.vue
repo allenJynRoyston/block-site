@@ -5,6 +5,7 @@
   // Props from parent
   const props = defineProps<{
     isResizing: boolean
+    activeTab: string
   }>()
 
   const darkMode = inject('darkMode')
@@ -90,7 +91,7 @@
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
           <div class="min-h-full flex flex-col">
-            <MeContent />
+            <MeContent :activeTab="props.activeTab" />
           </div>
         </div>
       </div>
@@ -139,7 +140,7 @@
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
           <div class="min-h-full flex flex-col">
-            <AboutContent />
+            <AboutContent :activeTab="props.activeTab" />
           </div>
         </div>
       </div>
@@ -188,7 +189,7 @@
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
           <div class="flex flex-col">
-            <WebContent />
+            <WebContent :activeTab="props.activeTab" />
           </div>
         </div>
       </div>
@@ -237,7 +238,7 @@
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
           <div class="min-h-full flex flex-col">
-            <GameDevContent />
+            <GameDevContent :activeTab="props.activeTab" />
           </div>
         </div>
       </div>
@@ -286,7 +287,7 @@
           :class="[darkMode ? 'bg-slate-900' : 'bg-white']"
         >
           <div class="min-h-full flex flex-col">
-            <ContactContent />
+            <ContactContent :activeTab="props.activeTab" />
           </div>
         </div>
       </div>

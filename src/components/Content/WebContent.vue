@@ -1,13 +1,31 @@
 <script setup lang="ts">
-  import { inject } from 'vue'
+  import { inject, computed } from 'vue'
+  import LinkButton from '../LinkButton.vue'
+
+  // Props from parent
+  const props = defineProps<{
+    activeTab: string
+  }>()
 
   const darkMode = inject('darkMode')
-  const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
 
-  // Handle hover for the link
-  const handleLinkHover = (url: string) => {
+  const content = computed(() => {
+    if (props.activeTab === 'portfolio') {
+      return {
+        title: 'STARTUPS'
+      }
+    } else {
+      return {
+        title: 'WEB DEVELOPER',
+      }
+    }
+  })
+
+   const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
+
+  const handleHover = (content: string) => {
     if (updateClipboardContent) {
-      updateClipboardContent(url)
+      updateClipboardContent(content)
     }
   }
 </script>
@@ -25,9 +43,9 @@
     ></div>
 
     <!-- Main Content -->
-    <div class="relative z-10 max-w-full">
+    <div class="relative z-10 min-w-full">
       <!-- Header -->
-      <div class="mb-4">
+      <div class="mb-4 w-full">
         <div class="flex items-center gap-2 mb-3">
           <div
             :class="
@@ -40,7 +58,7 @@
             :class="
               darkMode ? 'text-xs text-cyan-400/80 font-mono' : 'text-xs text-black/80 font-mono'
             "
-            >WEB DEVELOPER</span
+            >{{ content.title }}</span
           >
           <div
             :class="
@@ -57,26 +75,24 @@
         class="space-y-3 text-sm leading-relaxed font-serif"
         :class="darkMode ? 'text-white/90' : 'text-gray-800/90'"
       >
-        <p>
-          <span class="font-bold">Full-stack developer here</span>
-          <span class="opacity-75"> (I mean c'mon aren't we all now?) </span> with a
-          <span class="line-through">the tech industry is on fire fuck fuck</span> passion for
-          crafting <span class="italic">elegant solutions</span> to complex problems.
-        </p>
-        <p>
+        <div v-if="props.activeTab === 'about-me'">
+          Full-stack developer here (I mean c'mon aren't we all now?) with a passion for
+          crafting elegant solutions to complex problems.
+          <br></br>
+          <br></br>
           I specialize in modern web technologies and have a deep love for building seamless
           frontend experiences. Like many in my position, I'm silently panicking about how AI is going to
-          <span class="line-through">definately</span> <span class="line-through text-red-500">if we're lucky</span> kill us all, frantically
-          scrolling through shitty LinkedIn job postings, and honestly the whole situation in the
-          tech industry is all just very upsetting right now.
-        </p>
+          definately kill us all, frantically scrolling through shitty LinkedIn job postings, and honestly
+          the whole situation in the tech industry is all just very upsetting right now.
+          <br></br>
+          <br></br>
+          All that being said, I still <span class="text-red-500">fucking love to code</span>.
+        </div>
+        <div class="relative" v-if="props.activeTab === 'portfolio'">
+          <img @mouseenter="handleHover('https://fountech.ai')" src="/screenshots/fountech.png" alt="Startup GIF" class="w-full h-full object-cover fixed top-0 left-0" />
+          <LinkButton href="https://fountech.ai" />
 
-        <p>All that being said, I still fucking love to code.</p>
-        <br></br>
-        <a class="cursor-pointer hover:underline transition-all duration-200"
-          @mouseenter="handleLinkHover('https://jynovation-live.deno.dev')">
-          (Here's a link to my other stuff.)
-        </a>
+        </div>
       </div>
     </div>
   </div>

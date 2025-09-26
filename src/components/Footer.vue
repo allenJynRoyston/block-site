@@ -6,6 +6,14 @@
   const isMobile = inject('isMobile')
   const darkMode = inject('darkMode')
   const clipboardContent = inject<any>('clipboardContent')
+  const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
+
+  // Set default clipboard content on mount
+  onMounted(() => {
+    if (updateClipboardContent) {
+      updateClipboardContent('(╯°□°)╯︵ ┻━┻')
+    }
+  })
 
   // Clipboard functionality
   const showCopiedSplash = ref(false)

@@ -1,7 +1,29 @@
 <script setup lang="ts">
-  import { inject } from 'vue'
+  import { inject, computed } from 'vue'
+  import LinkButton from '../LinkButton.vue'
+
+
+  interface Props {
+    activeTab?: string
+  }
 
   const darkMode = inject('darkMode')
+
+  const props = withDefaults(defineProps<Props>(), {
+    activeTab: 'about-me'
+  })
+
+  const title = computed(() => {
+    return props.activeTab === 'portfolio' ? 'ITEM 2' : 'ABOUT'
+  })
+
+  const updateClipboardContent = inject<(content: string) => void>('updateClipboardContent')
+
+  const handleHover = (content: string) => {
+    if (updateClipboardContent) {
+      updateClipboardContent(content)
+    }
+  }
 </script>
 <template>
   <div class="flex flex-col justify-center items-start p-6 w-full h-full relative overflow-hidden">
@@ -32,7 +54,7 @@
             :class="
               darkMode ? 'text-xs text-cyan-400/80 font-mono' : 'text-xs text-black/80 font-mono'
             "
-            >ABOUT</span
+            >{{ title }}</span
           >
           <div
             :class="
@@ -49,23 +71,25 @@
         class="space-y-3 text-sm leading-relaxed font-serif"
         :class="darkMode ? 'text-white' : 'text-black'"
       >
-        <p>
-          <span class="font-bold">Happily married</span> to the most amazing woman who somehow
-          tolerates my bullshit. <span class="italic">She's genuinely incredible</span>
-          and way too good for me, but cool enough to not remind me of that fact too often.
-        </p>
+        <div v-if="props.activeTab === 'portfolio'">
+          <div class="relative" v-if="props.activeTab === 'portfolio'">
+            <img @mouseenter="handleHover('https://metafy.gg')" src="/screenshots/metafy.png" alt="Startup GIF" class="w-full h-full object-cover fixed top-0 left-0" />
+            <LinkButton href="https://metafy.gg" />
 
-        <p>
-          When I'm not coding (which is pretty rare, admittedly), I'm watching in silent horror the
-          slow but gradual rise in authoritarianism around the world, playing video games, and
-          wishing we had a pet other then a hedgehog. Is it cute? Sure. <em>I guess.</em> Is it a
-          dog? No.
-        </p>
-
-        <p>
-          Life is busy, weird, slightly terrible all the time, and pretty great. 7 out of 10, would
-          recommend to a friend.
-        </p>
+          </div>
+        </div>
+        <div v-else>
+          <p>
+            <span class="font-bold">Happily married</span> to the most amazing woman who is just, like, <em>really cool you guys</em>.  I love her so much; shes so much fun to be with and I just consider myself incredibly lucky to wake up next to her everyday.
+          </p>
+          <br></br>
+          <p>In my free time, I enjoy longboarding, jogging, and making video games.</p>
+          <br></br>
+          <p>
+            Life is busy, weird, slightly terrible all the time, but pretty great. 7 out of 10, would
+            recommend to a friend.
+          </p>
+        </div>
       </div>
     </div>
   </div>

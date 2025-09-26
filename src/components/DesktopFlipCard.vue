@@ -16,20 +16,15 @@
 </script>
 
 <template>
-  <div
-    class="w-full h-full relative"
-    :style="{
-      transformStyle: 'preserve-3d',
-      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-      transition: 'transform 0.6s ease-in-out',
-    }"
-  >
-    <!-- Front Side -->
+  <div class="w-full h-full relative overflow-hidden">
+    <!-- Front Side - slides out to the left when flipped -->
     <div
       class="absolute inset-0 flex justify-center items-center"
       :class="[isHovered ? frontHoverBg || 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white']"
       :style="{
-        backfaceVisibility: 'hidden',
+        transform: isFlipped ? 'translateX(-100%)' : 'translateX(0%)',
+        transition: isResizing ? 'none' : 'transform 0.5s ease-in-out',
+        zIndex: isFlipped ? 1 : 2,
       }"
     >
       <slot name="front">
@@ -45,13 +40,14 @@
       </slot>
     </div>
 
-    <!-- Back Side -->
+    <!-- Back Side - slides in from the right when flipped -->
     <div
       class="absolute inset-0 flex justify-center items-center"
       :class="[backHoverBg ? 'bg-black' : darkMode ? 'bg-slate-900' : 'bg-white']"
       :style="{
-        backfaceVisibility: 'hidden',
-        transform: 'rotateY(180deg)',
+        transform: isFlipped ? 'translateX(0%)' : 'translateX(100%)',
+        transition: isResizing ? 'none' : 'transform 0.5s ease-in-out',
+        zIndex: isFlipped ? 2 : 1,
       }"
     >
       <slot name="back">
